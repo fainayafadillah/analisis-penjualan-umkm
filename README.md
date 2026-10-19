@@ -34,7 +34,7 @@ analisis-penjualan-umkm/
 
 ## 1. Menjalankan dashboard
 
-Karena browser biasanya membatasi `fetch()` ketika HTML dibuka langsung sebagai `file://`, jalankan website menggunakan server lokal.
+https://fainayafadillah.github.io/analisis-penjualan-umkm/#performance
 
 ### Opsi A — Python
 

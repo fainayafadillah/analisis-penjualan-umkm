@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dashboard analisis data penjualan UMKM berbasis dataset simulasi.">
+  <title>UMKM Insight — Dashboard Penjualan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#"><span class="brand-mark">U</span><span>UMKM<span class="brand-light">Insight</span></span></a>
+      <p class="side-label">MENU UTAMA</p>
+      <a class="nav-link active" href="#overview"><span>▦</span> Dashboard</a>
+      <a class="nav-link" href="#performance"><span>↗</span> Performa Penjualan</a>
+      <a class="nav-link" href="#insights"><span>◈</span> Analisis & Strategi</a>
+      <div class="sidebar-bottom">
+        <div class="mini-illustration"><span>✦</span><strong>Data yang tepat,<br>keputusan lebih baik.</strong><small>Insight untuk bisnis kecil.</small></div>
+        <p class="side-foot">PROYEK STUDI KASUS<br><b>Dataset simulasi · 2025</b></p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div><div class="eyebrow">ANALITIK BISNIS / UMKM</div><h1>Dashboard Penjualan</h1><p class="subtitle">Pantau performa, temukan penyebab, tentukan langkah berikutnya.</p></div>
+        <div class="topbar-right"><span class="status-dot"></span><span>Mode simulasi</span><div class="avatar">UI</div></div>
+      </header>
+
+      <section class="filter-bar" id="overview">
+        <div><label for="periodFilter">Periode</label><select id="periodFilter"><option value="all">Semua tahun 2025</option></select></div>
+        <div><label for="categoryFilter">Kategori produk</label><select id="categoryFilter"><option value="all">Semua kategori</option></select></div>
+        <div><label for="channelFilter">Saluran penjualan</label><select id="channelFilter"><option value="all">Semua saluran</option></select></div>
+        <button id="resetFilters" class="button-secondary">Atur ulang</button>
+        <span id="recordCount" class="record-count">Memuat data…</span>
+      </section>
+
+      <section class="metric-grid" aria-label="Ringkasan metrik">
+        <article class="metric-card"><div class="metric-top"><span>Total pendapatan</span><span class="metric-icon blue">↗</span></div><strong id="revenueMetric">—</strong><div class="metric-note"><span class="note-pill">OMZET</span><span>Setelah diskon</span></div></article>
+        <article class="metric-card"><div class="metric-top"><span>Total keuntungan</span><span class="metric-icon purple">◈</span></div><strong id="profitMetric">—</strong><div class="metric-note"><span id="profitMargin" class="note-pill">—</span><span>Margin keuntungan</span></div></article>
+        <article class="metric-card"><div class="metric-top"><span>Unit terjual</span><span class="metric-icon cyan">▤</span></div><strong id="unitsMetric">—</strong><div class="metric-note"><span class="note-pill">VOLUME</span><span>Total produk terjual</span></div></article>
+        <article class="metric-card"><div class="metric-top"><span>Rata-rata diskon</span><span class="metric-icon orange">％</span></div><strong id="discountMetric">—</strong><div class="metric-note"><span class="note-pill">PROMO</span><span>Terhadap omzet kotor</span></div></article>
+      </section>
+
+      <section class="chart-grid" id="performance">
+        <article class="panel chart-panel wide-panel"><div class="panel-heading"><div><h2>Tren pendapatan & keuntungan</h2><p>Pergerakan bulanan dalam tahun simulasi</p></div><span class="chart-tag">BULANAN</span></div><div class="chart-wrap"><canvas id="trendChart"></canvas></div></article>
+        <article class="panel chart-panel"><div class="panel-heading"><div><h2>Keuntungan per kategori</h2><p>Kontribusi keuntungan tiap kategori</p></div></div><div class="chart-wrap doughnut-wrap"><canvas id="categoryChart"></canvas></div><div id="categoryLegend" class="category-legend"></div></article>
+      </section>
+
+      <section class="lower-grid">
+        <article class="panel"><div class="panel-heading"><div><h2>Produk dengan keuntungan tertinggi</h2><p>Diurutkan berdasarkan total keuntungan</p></div></div><div id="productRanking" class="ranking-list"><div class="empty-state">Memuat data…</div></div></article>
+        <article class="panel" id="insights"><div class="panel-heading"><div><h2>Temuan awal</h2><p>Indikator yang perlu diperiksa</p></div><span class="insight-spark">✦</span></div><div id="insightList" class="insight-list"><div class="empty-state">Menganalisis data…</div></div></article>
+      </section>
+
+      <section class="panel strategy-panel"><div class="strategy-heading"><div><span class="eyebrow">LANGKAH SELANJUTNYA</span><h2>Rekomendasi strategi bisnis</h2><p>Ide awal yang perlu diuji dengan kondisi usaha sebenarnya.</p></div><div class="strategy-symbol">↗</div></div><div class="strategy-grid">
+        <div class="strategy-item"><span class="strategy-number">01</span><div><h3>Evaluasi diskon</h3><p>Hitung margin per produk dan hentikan promo yang menaikkan omzet tetapi menekan keuntungan.</p></div></div>
+        <div class="strategy-item"><span class="strategy-number">02</span><div><h3>Negosiasi biaya</h3><p>Bandingkan pemasok, tinjau biaya operasional, dan pantau perubahan modal per unit.</p></div></div>
+        <div class="strategy-item"><span class="strategy-number">03</span><div><h3>Fokus pada produk unggulan</h3><p>Prioritaskan stok dan pemasaran pada produk dengan keuntungan dan permintaan yang sehat.</p></div></div>
+      </div></section>
+      <footer><span>UMKM Insight · Studi kasus analisis data</span><span>Data simulasi, bukan laporan bisnis nyata.</span></footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+</body>
+</html>
